@@ -16,7 +16,9 @@ class base_controller {
 			$this->userObj = new User();
 			
 		# Authenticate / load user
-			$this->user = $this->userObj->authenticate();					
+			$this->user = $this->userObj->authenticate();
+			
+			print_r($this->user);					
 						
 		# Set up templates
 			$this->template 	  = View::instance('_v_template');

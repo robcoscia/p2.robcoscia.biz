@@ -1,0 +1,67 @@
+/* 
+    Created on : Oct 12, 2013, 4:11:25 PM
+    Author     : robertcoscia
+*/
+
+    
+.SignupForm {
+	
+   	margin: 0;
+  	padding: 0;
+  	background: #f1f1f1;
+  	border: none;
+  	width: 800px;
+  	}
+ 
+ .FirstNameDiv, 
+ .LastNameDiv,
+ .EmailAddressDiv,
+ .PasswordDiv,
+ .VerifyPasswordDiv{
+	 padding-bottom: 5%;
+	 }
+ 
+ .FirstNameDiv{
+	 padding-top: 5%;
+	 } 
+ 
+ 
+ .FirstNameLabel,
+ .LastNameLabel,
+ .EmailAddressLabel,
+ .PasswordLabel,
+ .VerifyPasswordLabel{
+	 float: left;
+	 width: 20%;
+	 text-align: right;
+	 margin-right: 0.5em;
+	 white-space: nowrap;
+	 overflow: hidden;
+	 text-overflow: ellipsis;
+	 -o-text-overflow: ellipsis;
+	 }
+  
+.firstname,
+.lastname,
+.emailaddress,
+.Password,
+.verifypassword{
+	width: 25%;
+	float: right;
+    text-align: left;
+}
+.CreateAccountInput{
+	width: 20%;
+        float: left;
+}
+	
+.FNErrorDiv, 
+.LNErrorDiv,
+.EAErrorDiv,
+.PassErrorDiv,
+.VPassErrorDiv{
+   color:red !important;
+   text-align: left;
+   float: right;
+   width: 40%;
+}

@@ -1,0 +1,48 @@
+Body{
+	font-family: Verdana, Geneva, Arial, sans-serif;  
+}
+
+header{
+	display: block;	
+}
+
+.MenuDiv{
+	display: block;
+	text-align: right;
+	width: 99%;
+	background-color:  #e4e2e2;
+	height: 20px;
+	padding-left: 5px;
+}
+
+.MainSeperatorDiv{
+	display: block;
+	width: 99%;
+	background-color: black;
+	height: 5px;
+	padding-left: 5px;
+}
+
+.BrandDiv{
+	display: block;
+	padding-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	Width: 99%;
+}
+
+.BrandImg{
+	padding-top: 5px;
+	padding-left: 5%;
+	width: 68px;
+	height: 100px;
+	background-color: white;
+	border-radius: 80px;
+}
+
+.CaptionSpan{
+	padding-left: 2%;
+	font-size:  xx-large;
+	font-family: cursive;
+	
+}

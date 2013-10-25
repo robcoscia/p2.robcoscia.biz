@@ -1,0 +1,44 @@
+/* 
+    Created on : Oct 22, 2013, 9:18:25 PM
+    Author     : robertcoscia
+*/
+
+
+.LoginForm {
+   	margin: 0;
+  	padding: 0;
+  	background: #f1f1f1;
+  	border: none;
+  	width: 600px;
+}
+
+.EmailDiv,
+ .PwdDiv{
+	 padding-bottom: 5%;
+}
+
+.PwdLabel,
+.EmailLabel{
+	 float: left;
+	 width: 20%;
+	 text-align: right;
+	 margin-right: 0.5em;
+	 white-space: nowrap;
+	 overflow: hidden;
+	 text-overflow: ellipsis;
+	 -o-text-overflow: ellipsis;
+	 }
+
+.PwdInput,
+.EmailInput{
+	width: 20%;
+    text-align: left;
+}
+
+.LoginErrorDiv
+{
+   color:red !important;
+   text-align: left;
+   width: 20%;
+   float: right;
+}
