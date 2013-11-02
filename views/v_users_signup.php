@@ -1,36 +1,39 @@
 <div class="Signupdiv">
 	<h1> Create a new account</h1>
-    <form  class="SignupForm" action="/users/p_signup" method="POST" onsubmit="return validateform(this);">
-        <div class="FirstNameDiv">
-        	<label  class="FirstNameLabel"> First Name: </label>
-        	<input type="text" name="first_name" value="" max="30" size="30" />
-        	<div class="FNErrorDiv"></div>
+    <form  id="SignupForm" action="/users/p_signup" method="POST" >
+        <div id="FirstNameDiv">
+        	<label  id="FirstNameLabel" class="SignupLabel">First Name:</label>
+        	<input class="SignupValue" type="text" name="first_name" value="" max="30" size="30" onblur="ValidateText(this, 'FNErrorDiv');"/>
+        	<div id="FNErrorDiv" class="ErrorDiv"></div>
         	<br /> 
         </div>
-        <div class="LastNameDiv"> 
-        	<label class="LastNameLabel"> Last Name: </label>
-        	<input type="text" name="last_name" value="" max="40" size="40" /> 
-        	<div class="LNErrorDiv"></div>
+        <div id="LastNameDiv"> 
+        	<label id="LastNameLabel" class="SignupLabel"> Last Name: </label>
+        	<input class="SignupValue" type="text" name="last_name" value="" max="40" size="40" onblur="ValidateText(this, 'LNErrorDiv');"/> 
+        	<div id="LNErrorDiv" class="ErrorDiv"></div>
         	<br /> 
         </div>
-        <div class="EmailAddressDiv"> 
-        	<label class="EmailAddressLabel"> Email Address: </label>
-        	<input type="text" name="email" value="" max="50" size="50" /> 
-        	<div class="EAErrorDiv"></div>
+        <div id="EmailAddressDiv"> 
+        	<label id="EmailAddressLabel" class="SignupLabel"> Email Address: </label>
+        	<input class="SignupValue" type="text" name="email" value="" max="50" size="50" onblur="ValidateEmail(this, 'EAErrorDiv');"/> 
+        	<div id="EAErrorDiv" class="ErrorDiv"></div>
          	<br /> 
         </div>
-        <div class="PasswordDiv"> 
-        	<label class="PasswordLabel"> Password: </label>
-        	<input type="password" name="password" value="" max="20" size="20" /> 
-        	<div class="PassErrorDiv"></div>
+        <div id="PasswordDiv"> 
+        	<label id="PasswordLabel" class="SignupLabel"> Password: </label>
+        	<input class="SignupValue" type="password" name="password" value="" max="20" size="20" onblur="ValidatePassword(this, 'PassErrorDiv');"/> 
+        	<div id="PassErrorDiv" class="ErrorDiv"></div>
         	<br /> 
         </div>
-        <div class="VerifyPasswordDiv"> 
-        	<label class="VerifyPasswordLabel"> Verify Password: </label>
-        	<input type="password" name="verifypassword" value="" max="20" size="20"  /> 
-        	<div class="VPassErrorDiv"></div>
+        <div id="VerifyPasswordDiv"> 
+        	<label id="VerifyPasswordLabel" class="SignupLabel"> Verify Password: </label>
+        	<input class="SignupValue" type="password" name="verifypassword" value="" max="20" size="20"  /> 
+        	<div id="VPassErrorDiv" class="ErrorDiv"></div>
        	<br />
         </div>
-        <input class="CreateAccountInput" type="submit" value="Create Account" onclick="return validateform(this.form);" />
+        <br>
+		<div id="CreateButtonDiv">
+        	<input id="CreateAccountInput" type="submit" value="Create Account" onclick="return validateform(this.form);" />
+		</div>
     </form>        
 </div>

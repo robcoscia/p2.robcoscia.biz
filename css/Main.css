@@ -6,32 +6,40 @@ header{
 	display: block;	
 }
 
-.MenuDiv{
+#MenuDiv{
 	display: block;
 	text-align: right;
-	width: 99%;
+	width: 75%;
 	background-color:  #e4e2e2;
 	height: 20px;
 	padding-left: 5px;
 }
 
-.MainSeperatorDiv{
+#MainSeperatorDiv{
 	display: block;
-	width: 99%;
+	width: 75%;
 	background-color: black;
 	height: 5px;
 	padding-left: 5px;
 }
 
-.BrandDiv{
+#BottomSeperatorDiv{
+	display: block;
+	width: 75%;
+	background-color: black;
+	height: 5px;
+	padding-left: 5px;	
+}
+
+#BrandDiv{
 	display: block;
 	padding-top: 5px;
 	padding-left: 5px;
 	padding-right: 5px;
-	Width: 99%;
+	Width: 75%;
 }
 
-.BrandImg{
+#BrandImg{
 	padding-top: 5px;
 	padding-left: 5%;
 	width: 68px;
@@ -40,7 +48,7 @@ header{
 	border-radius: 80px;
 }
 
-.CaptionSpan{
+#CaptionSpan{
 	padding-left: 2%;
 	font-size:  xx-large;
 	font-family: cursive;

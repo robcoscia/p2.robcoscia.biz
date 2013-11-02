@@ -1,12 +1,12 @@
-<div class="LoginDiv>"
-	<form class="LoginForm" action="/users/p_login" method="post">
+<div class="LoginDiv">
+	<form class="LoginForm" action="/users/p_login" method="post" onsubmit="return validateform(this);" >
 		<div class="EmailDiv">
 			<label class="EmailLabel" for="EmailInput">Email:</label>
-			<input class="EmailInput" type="text" name="email" value="" maxlength="50" />
+			<input type="text" name="email" value="" maxlength="50" />
 		</div>
 		<div class="PwdDiv">
 			<label class="PwdLabel" for="PwdInput">Password:</label>
-			<input class="PwdInput" type="password" name="password" value="" maxlength="20" />
+			<input type="password" name="password" value="" maxlength="20" />
 		</div>
 		<div class="LoginErrorDiv">
 			<?php if(isset($error)): ?>
@@ -14,5 +14,5 @@
 			<?php endif; ?>
 		</div>
 		<input class="LoginInput" type="submit" value="Login" />
-	</form>
+    </form>
 </div>

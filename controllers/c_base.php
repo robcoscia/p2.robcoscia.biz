@@ -11,15 +11,13 @@ class base_controller {
 
 	-------------------------------------------------------------------------------------------------*/
 	public function __construct() {
-						
+	
 		# Instantiate User obj
 			$this->userObj = new User();
 			
 		# Authenticate / load user
 			$this->user = $this->userObj->authenticate();
-			
-			print_r($this->user);					
-						
+									
 		# Set up templates
 			$this->template 	  = View::instance('_v_template');
 			$this->email_template = View::instance('_v_email');			
@@ -27,6 +25,7 @@ class base_controller {
 		# So we can use $user in views			
 			$this->template->set_global('user', $this->user);
 			
+			#print_r($this->user);
 	}
 	
 } # eoc

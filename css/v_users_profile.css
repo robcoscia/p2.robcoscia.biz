@@ -1,0 +1,57 @@
+#ProfileDiv {
+	padding-top: 2%;
+}
+
+#ProfileForm {
+	margin:0;
+	padding:0;
+	background:#f1f1f1;
+	border:none;
+	width:75%;
+}
+
+#FirstNmDiv {
+	padding-top:2%;
+}
+
+.ProfileLabel {
+	float:left;
+	width:20%;
+	text-align:right;
+	margin-right:.5em;
+	white-space:nowrap;
+}
+
+.ProfileValues {
+	width:25%;
+	float:left;
+	white-space:nowrap;
+}
+
+#BiographyTextArea {
+	display: block;
+	width:50%;
+	height:200px;
+}
+
+#BiogrphyTextAreaDiv {
+	padding-left:8%;
+}
+
+#UpdateButtonDiv {
+	padding-left:22%;
+	padding-bottom:3%;
+}
+
+#AvatarImage {
+	width:150px;
+	height:100px;
+	float:left;
+}
+
+.ErrorDiv {
+	color:red!important;
+	text-align:left;
+	float:right;
+	width:40%;
+}

@@ -31,7 +31,7 @@
     Router::init();
     
 # Display environment details
-	require CORE_PATH."environment-details.php";
+#	require CORE_PATH."environment-details.php";
 	
 ?>
 
