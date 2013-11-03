@@ -2,43 +2,53 @@
     Created on : Oct 22, 2013, 9:18:25 PM
     Author     : robertcoscia
 */
-
+#LoginDiv {
+	padding-top:2%;
+}
 
 .LoginForm {
-   	margin: 0;
-  	padding: 0;
-  	background: #f1f1f1;
-  	border: none;
-  	width: 600px;
+	margin:0;
+	padding:0;
+	background:#f1f1f1;
+	border:none;
+	width:75%;
 }
 
-.EmailDiv,
- .PwdDiv{
-	 padding-bottom: 5%;
+#EmailDiv {
+	padding-top:5%;
+	padding-bottom:5%;
 }
 
-.PwdLabel,
-.EmailLabel{
-	 float: left;
-	 width: 20%;
-	 text-align: right;
-	 margin-right: 0.5em;
-	 white-space: nowrap;
-	 overflow: hidden;
-	 text-overflow: ellipsis;
-	 -o-text-overflow: ellipsis;
-	 }
-
-.PwdInput,
-.EmailInput{
-	width: 20%;
-    text-align: left;
+#PwdDiv {
+	padding-bottom:5%;
 }
 
-.LoginErrorDiv
-{
-   color:red !important;
-   text-align: left;
-   width: 20%;
-   float: right;
+.LoginLabel {
+	float:left;
+	width:30%;
+	text-align:right;
+	margin-right:.5em;
+	white-space:nowrap;
+}
+
+#PwdInput,#EmailInput {
+	width:25%;
+}
+
+#LoginButtonDiv {
+	padding-left:32%;
+	padding-bottom:3%;
+}
+
+#LoginErrorDiv {
+	color:red!important;
+	float:right;
+	width: 50%;
+}
+
+.ErrorDiv {
+	color:red!important;
+	text-align:left;
+	float:right;
+	width:40%;
 }

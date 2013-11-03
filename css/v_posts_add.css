@@ -1,3 +1,30 @@
 .AddPostDiv{
-	
+	padding-top: 2%;	
+}
+
+#AddPostForm {
+	margin:0;
+	padding:0;
+	background:#f1f1f1;
+	border:none;
+	width:75%;	
+}
+
+#ContentLabel {
+	float:left;
+	width:30%;
+	text-align:right;
+	margin-right:.5em;
+	white-space:nowrap;	
+}
+
+#content {
+	display: block;
+	width:40%;
+	height:100px;	
+}
+
+#AddButtonDiv {
+	padding-left:32%;
+	padding-bottom:3%;
 }

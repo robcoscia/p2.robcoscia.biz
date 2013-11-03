@@ -1,56 +1,71 @@
-Body{
-	font-family: Verdana, Geneva, Arial, sans-serif;  
+Body {
+	font-family:Verdana,Geneva,Arial,sans-serif;
 }
 
-header{
-	display: block;	
+header {
+	display:block;
 }
 
-#MenuDiv{
-	display: block;
-	text-align: right;
-	width: 75%;
-	background-color:  #e4e2e2;
-	height: 20px;
-	padding-left: 5px;
+#MenuDiv {
+	display:block;
+	text-align:right;
+	width:75%;
+	background-color:#e4e2e2;
+	height:20px;
+	padding-left:5px;
 }
 
-#MainSeperatorDiv{
-	display: block;
-	width: 75%;
-	background-color: black;
-	height: 5px;
-	padding-left: 5px;
+#MainSeperatorDiv {
+	display:block;
+	width:75%;
+	background-color:#000;
+	height:5px;
+	padding-left:5px;
 }
 
-#BottomSeperatorDiv{
-	display: block;
-	width: 75%;
-	background-color: black;
-	height: 5px;
-	padding-left: 5px;	
+#BottomSeperatorDiv {
+	display:block;
+	width:75%;
+	background-color:#000;
+	height:5px;
+	padding-left:5px;
 }
 
-#BrandDiv{
-	display: block;
-	padding-top: 5px;
-	padding-left: 5px;
-	padding-right: 5px;
-	Width: 75%;
+#BrandDiv {
+	display:block;
+	padding-top:5px;
+	padding-left:5px;
+	padding-right:5px;
+	width:75%;
 }
 
-#BrandImg{
-	padding-top: 5px;
-	padding-left: 5%;
-	width: 68px;
-	height: 100px;
-	background-color: white;
-	border-radius: 80px;
+#BrandImg {
+	padding-top:5px;
+	padding-left:5%;
+	width:68px;
+	height:100px;
+	background-color:#fff;
+	border-radius:80px;
 }
 
-#CaptionSpan{
-	padding-left: 2%;
-	font-size:  xx-large;
-	font-family: cursive;
-	
+#CaptionSpan {
+	padding-left:2%;
+	font-size:xx-large;
+	font-family:cursive;
+}
+
+.MenuItems {
+	padding-left:2px;
+}
+
+#WelcomeDiv {
+	float: right;
+	padding-right:5%;
+}
+
+.AvatarThumbnail {
+	width:100px;
+	height:75px;
+	float:left;
+	padding-right:3px;
 }
