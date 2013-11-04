@@ -13,9 +13,13 @@
 
 <body>	
 	<header>
+			<?php if(isset($user->first_name)): ?>
+				<div id="WelcomeDiv"> Welcome <?php  echo $user->first_name  ?> </div>
+				<br>
+			<?php endif; ?>
 		<div id="BrandDiv">
 			<img id="BrandImg" src="/images/Woman_calling_sml.jpg" >
-				<span id="CaptionSpan">Shout Out</span>
+			<span id="CaptionSpan">Shout Out</span>
 		</div>
 		<div id='MenuDiv'>
 	
@@ -23,17 +27,16 @@
 	
 	        <!-- Menu for users who are logged in -->
 	        <?php if($user): ?>
-				<a href='/posts/Add'>Shout Out</a>
-				<a href='/posts/index'>Shouts</a>
-				<a href='/posts/users'>Shouters</a>
-	            <a href='/users/profile'>Profile</a>
-	            <a href='/users/logout'>Logout</a>
+				<a class="MenuItems" href='/posts/Add'>ShoutOut</a>
+				<a class="MenuItems" href='/posts/users'>Shouters</a>
+	            <a class="MenuItems" href='/users/profile'>Profile</a>
+	            <a class="MenuItems" href='/users/logout'>Logout</a>
 	
 	        <!-- Menu options for users who are not logged in -->
 	        <?php else: ?>
 	
-	            <a href='/users/signup'>Sign up</a>
-	            <a href='/users/login'>Log in</a>
+	            <a class="MenuItems" href='/users/signup'>Sign up</a>
+	            <a class="MenuItems" href='/users/login'>Log in</a>
 	
 	        <?php endif; ?>
 		    </div>

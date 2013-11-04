@@ -19,6 +19,13 @@
 		</div>
 		<br>
 		<br>
+		<div id="LocationDiv">
+			<label class="ProfileLabel" for="location">Location:</label>
+			<input class="ProfileValues" id="location" type="text" name="location" value="<?php echo $user->location ?>" />
+			<div id="locErrorDiv" class="ErrorDiv"></div>
+		</div>
+		<br>
+		<br>
 		<div id="AvatarDiv">
 			<label class="ProfileLabel">Profile Picture:</label>
 			<?php if(isset($user->avatar)): ?>

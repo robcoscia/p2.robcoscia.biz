@@ -17,7 +17,7 @@ class users_controller extends base_controller {
 		# First, set the content of the template with a view file
 		$this->template->content = View::instance('v_users_signup');
 
-		$client_files_head = array("/css/v_users_signup.css");
+		$client_files_head = array("/css/users_signup.css");
 		$this->template->client_files_head = Utils::load_client_files($client_files_head);
 
 		$client_files_body = array("/js/ElementValidation.js", "/js/signup.js");
@@ -36,7 +36,18 @@ class users_controller extends base_controller {
 	-------------------------------------------------------------------------------------------------*/
 	public function p_signup() {
 		# Validation
+		
+		# check to see if email address is in use
+		$q = "SELECT token
+	        FROM users
+	        WHERE email = '".$_POST['email']."'";
 
+		$token = DB::instance(DB_NAME)->select_field($q);
+
+		if(isset($token))
+		{
+			Router::redirect('/users/login/2');
+		}
 
 		# More data we want stored with the user
 		$_POST['created']  = Time::now();
@@ -66,8 +77,12 @@ class users_controller extends base_controller {
 
 		# First, set the content of the template with a view file
 		$this->template->content = View::instance('v_users_login');
-		$client_files_head = array("/css/v_users_login.css", "/js/login.js");
+		
+		$client_files_head = array("/css/users_login.css");
 		$this->template->client_files_head = Utils::load_client_files($client_files_head);
+
+		$client_files_body = array("/js/ElementValidation.js", "/js/login.js");
+		$this->template->client_files_body = Utils::load_client_files($client_files_body);
 
 		# Now set the <title> tag
 		$this->template->title = "Login";
@@ -84,7 +99,7 @@ class users_controller extends base_controller {
 	/*-------------------------------------------------------------------------------------------------
 	 Process a post from login page
 	-------------------------------------------------------------------------------------------------*/
-	public function p_login($error=null) {
+	public function p_login() {
 
 		# Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)
 		$_POST = DB::instance(DB_NAME)->sanitize($_POST);
@@ -104,7 +119,7 @@ class users_controller extends base_controller {
 		# If we didn't find a matching token in the database, it means login failed
 		if(!$token) {
 			# Send them back to the login page
-			Router::redirect("/users/login/error");
+			Router::redirect("/users/login/1");
 
 			# But if we did, login succeeded!
 		} else {
@@ -150,7 +165,7 @@ class users_controller extends base_controller {
 		# First, set the content of the template with a view file
 		$this->template->content = View::instance('v_users_profile');
 		
-		$client_files_head = array("/css/v_users_profile.css");
+		$client_files_head = array("/css/users_profile.css");
 		$this->template->client_files_head = Utils::load_client_files($client_files_head);
 
 		$client_files_body = array("/js/ElementValidation.js", "/js/profile.js");
@@ -158,7 +173,16 @@ class users_controller extends base_controller {
 
 		# Now set the <title> tag
 		$this->template->title = "Profile";
-
+		
+		if(!isset($this->user->location))
+		{
+			$geo = Geolocate::locate();
+			if(isset($geo))
+			{
+				$this->user->location = $geo['city'].", ".$geo['state'];
+			}
+		}
+		
 		# Pass data to the view
 		$this->template->content->error = $error;
 
@@ -196,5 +220,30 @@ class users_controller extends base_controller {
 		Router::redirect('/');
 
 	} # End of method
+
+	public function bio($userid) {
+	
+	    # Set up the View
+	    $this->template->content = View::instance("v_users_bio");
+	    
+	    $this->template->title   = "Biography";
+	
+		$client_files_head = array("/css/users_bio.css");
+		$this->template->client_files_head = Utils::load_client_files($client_files_head);
+
+	    # Build the query to get all the users
+	    $q = "SELECT * FROM users where user_id = ".$userid;
+	
+	    # Execute the query to get all the users. 
+	    # Store the result array in the variable $bioUser
+	    $users = DB::instance(DB_NAME)->select_rows($q);
+		
+	    # Pass data (bioUser) to the view
+	    $this->template->content->users = $users;
+	
+	    # Render the view
+	    echo $this->template;
+	}
+
 
 } # End of class
