@@ -55,7 +55,11 @@
 		<br>
 		<div id="ErrorMsgDiv">
 			<?php if(isset($error)): ?>
-				<p>Unable to complete update.</p>
+				<?php if($error == 1): ?>
+					<p>Unable to complete update.</p>
+				<?php else: ?>
+					<p>Unable to upload the selected picture.</p>
+				<?php endif; ?>
 			<?php endif; ?>
 		</div>
 		<br>
