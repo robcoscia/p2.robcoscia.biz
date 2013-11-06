@@ -64,8 +64,8 @@ header {
 }
 
 .AvatarThumbnail {
-	width:100px;
-	height:75px;
+	width:150px;
+	height:150px;
 	float:left;
 	padding-right:3px;
 }

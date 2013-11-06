@@ -39,6 +39,9 @@
 		<br>
 		<br>
 		<br>
+		<br>
+		<br>
+		<br>
 		<div id="BiographyDiv">
 			<label class="ProfileLabel"> Biography:</label>
 			<textarea id="BiographyTextArea" class="ProfileValues" name="biography" ><?php echo $user->biography ?></textarea>

@@ -13,6 +13,9 @@
 				</a>
 			<?php endif; ?>	 
 			
+			<br>
+			<br>
+			
 			<h2><?=$user['first_name']?> <?=$user['last_name']?></h2>
 		
 			<div id="ConnectionDiv">
@@ -25,7 +28,7 @@
 			    <?php endif; ?>
 			</div>
 		</div>
-	    <br><br>
+	    <br><br><br>
 		<div id="UserSeperatorDiv"> </div>
 	
 	<?php endforeach; ?>
