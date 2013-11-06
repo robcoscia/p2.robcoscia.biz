@@ -24,6 +24,9 @@ class index_controller extends base_controller {
 			# Set up the View
 		    $this->template->content = View::instance('v_index_index');
 		    
+			$client_files_head = array("/css/index_index.css");
+			$this->template->client_files_head = Utils::load_client_files($client_files_head);
+			
 		    $this->template->title   = "Shout Out";
 						
 			# Render the View
