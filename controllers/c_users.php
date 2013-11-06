@@ -36,11 +36,33 @@ class users_controller extends base_controller {
 	-------------------------------------------------------------------------------------------------*/
 	public function p_signup() {
 		# Validation
-		
+		$validRequest = true;
+		if(!isset($post['first_name'])){
+			$validRequest = false;
+		}
+		if(!isset($post['last_name'])){
+			$validRequest = false;
+		}
+		if(!isset($post['email'])){
+			$validRequest = false;
+		} else {
+			if(filter_var($post['email'], FILTER_VALIDATE_EMAIL) == false)
+			{
+				$validRequest = false;
+			}
+		}
+		if(!isset($post['password'])){
+			$validRequest = false;
+		}
+		if($validRequest)
+		{
+			#Router::redirect('/users/signup');
+		}
+
 		# check to see if email address is in use
 		$q = "SELECT token
 	        FROM users
-	        WHERE email = '".$_POST['email']."'";
+	        WHERE email = '".DB::instance(DB_NAME)->sanitize($_POST['email'])."'";
 
 		$token = DB::instance(DB_NAME)->select_field($q);
 
@@ -71,13 +93,13 @@ class users_controller extends base_controller {
 
 
 	/*-------------------------------------------------------------------------------------------------
-
+		Allows user to login to shout out
 	-------------------------------------------------------------------------------------------------*/
 	public function login($error = NULL) {
 
 		# First, set the content of the template with a view file
 		$this->template->content = View::instance('v_users_login');
-		
+
 		$client_files_head = array("/css/users_login.css");
 		$this->template->client_files_head = Utils::load_client_files($client_files_head);
 
@@ -100,6 +122,20 @@ class users_controller extends base_controller {
 	 Process a post from login page
 	-------------------------------------------------------------------------------------------------*/
 	public function p_login() {
+		#Validation
+		$validRequest = true;
+		if(!isset($_POST['email'])){
+			$validRequest = false;
+		}
+		if(!isset($_POST['password'])){
+			$validRequest = false;
+		}
+
+		if(!$validRequest)
+		{
+			Router::redirect('/users/signup');
+		}
+
 
 		# Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)
 		$_POST = DB::instance(DB_NAME)->sanitize($_POST);
@@ -134,9 +170,14 @@ class users_controller extends base_controller {
 
 
 	/*-------------------------------------------------------------------------------------------------
-
+		Deactivates user token
 	-------------------------------------------------------------------------------------------------*/
 	public function logout() {
+		# Make sure user is logged in if they want to use anything in this controller
+		if(!$this->user) {
+			Router::redirect("/index/unauthorized");
+		}
+		
 		# Generate and save a new token for next login
 		$new_token = sha1(TOKEN_SALT.$this->user->email.Utils::generate_random_string());
 
@@ -158,13 +199,17 @@ class users_controller extends base_controller {
 
 
 	/*-------------------------------------------------------------------------------------------------
-
+		Allows user to modify profile data
 	-------------------------------------------------------------------------------------------------*/
 	public function profile($error = NULL) {
+		# Make sure user is logged in if they want to use anything in this controller
+		if(!$this->user) {
+			Router::redirect("/index/unauthorized");
+		}
 
 		# First, set the content of the template with a view file
 		$this->template->content = View::instance('v_users_profile');
-		
+
 		$client_files_head = array("/css/users_profile.css");
 		$this->template->client_files_head = Utils::load_client_files($client_files_head);
 
@@ -173,7 +218,7 @@ class users_controller extends base_controller {
 
 		# Now set the <title> tag
 		$this->template->title = "Profile";
-		
+
 		if(!isset($this->user->location))
 		{
 			$geo = Geolocate::locate();
@@ -182,7 +227,7 @@ class users_controller extends base_controller {
 				$this->user->location = $geo['city'].", ".$geo['state'];
 			}
 		}
-		
+
 		# Pass data to the view
 		$this->template->content->error = $error;
 
@@ -192,21 +237,36 @@ class users_controller extends base_controller {
 	} # End of method
 
 	/*-------------------------------------------------------------------------------------------------
-	 Process a post from signup page
+	 Process a post from profile page
 	-------------------------------------------------------------------------------------------------*/
 	public function p_profile() {
+		# Make sure user is logged in if they want to use anything in this controller
+		if(!$this->user) {
+			Router::redirect("/index/unauthorized");
+		}
+
 		# Validation
+		$validRequest = true;
+		if(isset($post['email']) && filter_var($post['email'], FILTER_VALIDATE_EMAIL) == false)
+		{
+			$validRequest = false;
+		}
+
+		if(!$validRequest)
+		{
+			Router::redirect('/users/profile/1'); # Display update failure error msg
+		}
 
 		# More data we want stored with the user
 		$_POST['modified'] = Time::now();
-		
+
 		if($_FILES['avatar_file']['size'] > 0)
 		{
 			$_POST['avatar']="avatar".$this->user->user_id.".jpg";
 			if($_POST['avatar']!= Upload::upload($_FILES, "/uploads/avatars/", array("jpg", "jpeg", "gif", "png"),
 					"avatar".$this->user->user_id))
 			{
-				Router::redirect('/users/profile/error');
+				Router::redirect('/users/profile/2'); # Display upload failure error msg
 			}
 		}
 
@@ -215,34 +275,42 @@ class users_controller extends base_controller {
 		# Insert this user into the database
 		if(DB::instance(DB_NAME)->update('users', $_POST, "Where user_id = ".$this->user->user_id) == 0)
 		{
-			Router::redirect('/users/profile/error');
+			Router::redirect('/users/profile/1'); # Display update failure error msg
 		}
 		Router::redirect('/');
 
 	} # End of method
 
+	/*-------------------------------------------------------------------------------------------------
+	 Displays a bio of the user
+	-------------------------------------------------------------------------------------------------*/
 	public function bio($userid) {
-	
-	    # Set up the View
-	    $this->template->content = View::instance("v_users_bio");
-	    
-	    $this->template->title   = "Biography";
-	
+		
+		# Make sure user is logged in if they want to use anything in this controller
+		if(!$this->user) {
+			Router::redirect("/index/unauthorized");
+		}
+
+		# Set up the View
+		$this->template->content = View::instance("v_users_bio");
+
+		$this->template->title   = "Biography";
+
 		$client_files_head = array("/css/users_bio.css");
 		$this->template->client_files_head = Utils::load_client_files($client_files_head);
 
-	    # Build the query to get all the users
-	    $q = "SELECT * FROM users where user_id = ".$userid;
-	
-	    # Execute the query to get all the users. 
-	    # Store the result array in the variable $bioUser
-	    $users = DB::instance(DB_NAME)->select_rows($q);
-		
-	    # Pass data (bioUser) to the view
-	    $this->template->content->users = $users;
-	
-	    # Render the view
-	    echo $this->template;
+		# Build the query to get all the users
+		$q = "SELECT * FROM users where user_id = ".DB::instance(DB_NAME)->sanitize($userid);
+
+		# Execute the query to get all the users.
+		# Store the result array in the variable $bioUser
+		$users = DB::instance(DB_NAME)->select_rows($q);
+
+		# Pass data (bioUser) to the view
+		$this->template->content->users = $users;
+
+		# Render the view
+		echo $this->template;
 	}
 
 

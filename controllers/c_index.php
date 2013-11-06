@@ -31,6 +31,19 @@ class index_controller extends base_controller {
 
 		}
 	} # End of method
-	
+
+	/*-------------------------------------------------------------------------------------------------
+	Accessed via http://localhost/index/unauthorized/
+	-------------------------------------------------------------------------------------------------*/
+	public function unauthorized() {
+
+		# Set up the View
+	    $this->template->content = View::instance('v_index_unauthorized');
+	    
+	    $this->template->title   = "Access Denied";
+					
+		# Render the View
+	    echo $this->template;
+	}	
 	
 } # End of class
