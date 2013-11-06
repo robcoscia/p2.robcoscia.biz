@@ -1,7 +1,10 @@
 #BioAvatarImg {
-	width:300px;
+	width:200px;
 	height:200px;
-	float:none;
-	padding-right:3px;
+	float:left;
+	padding-right:25px;
 }
+
+#BioContentDiv {
+	width: 75%;
 }
